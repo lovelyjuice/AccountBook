@@ -8,11 +8,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(764, 636)
+        Form.resize(786, 588)
         Form.setMaximumSize(QtCore.QSize(65535, 16777215))
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -48,8 +47,13 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.mbrCBox.sizePolicy().hasHeightForWidth())
         self.mbrCBox.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        self.mbrCBox.setFont(font)
         self.mbrCBox.setEditable(False)
         self.mbrCBox.setCurrentText("")
+        self.mbrCBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
         self.mbrCBox.setObjectName("mbrCBox")
         self.verticalLayout_2.addWidget(self.mbrCBox)
         self.typeCBox = QtWidgets.QComboBox(self.groupBox)
@@ -58,6 +62,11 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.typeCBox.sizePolicy().hasHeightForWidth())
         self.typeCBox.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        self.typeCBox.setFont(font)
+        self.typeCBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
         self.typeCBox.setObjectName("typeCBox")
         self.verticalLayout_2.addWidget(self.typeCBox)
         self.horizontalLayout_2.addLayout(self.verticalLayout_2)
@@ -303,3 +312,4 @@ class Ui_Form(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.membersTab), _translate("Form", "管理"))
         self.pushButton.setText(_translate("Form", "PushButton"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.statisticsTab), _translate("Form", "统计信息"))
+

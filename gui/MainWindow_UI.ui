@@ -6,8 +6,8 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>764</width>
-                <height>636</height>
+                <width>786</width>
+                <height>588</height>
             </rect>
         </property>
         <property name="maximumSize">
@@ -75,11 +75,20 @@
                                                 <verstretch>0</verstretch>
                                             </sizepolicy>
                                         </property>
+                                        <property name="font">
+                                            <font>
+                                                <family>Arial</family>
+                                                <pointsize>11</pointsize>
+                                            </font>
+                                        </property>
                                         <property name="editable">
                                             <bool>false</bool>
                                         </property>
                                         <property name="currentText">
                                             <string/>
+                                        </property>
+                                        <property name="sizeAdjustPolicy">
+                                            <enum>QComboBox::AdjustToContents</enum>
                                         </property>
                                     </widget>
                                 </item>
@@ -90,6 +99,15 @@
                                                 <horstretch>0</horstretch>
                                                 <verstretch>0</verstretch>
                                             </sizepolicy>
+                                        </property>
+                                        <property name="font">
+                                            <font>
+                                                <family>Arial</family>
+                                                <pointsize>11</pointsize>
+                                            </font>
+                                        </property>
+                                        <property name="sizeAdjustPolicy">
+                                            <enum>QComboBox::AdjustToContents</enum>
                                         </property>
                                     </widget>
                                 </item>
