@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -116,6 +117,11 @@ class Ui_Form(object):
         self.horizontalLayout_2.addLayout(self.verticalLayout_5)
         spacerItem2 = QtWidgets.QSpacerItem(355, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
+        self.searchEdit = QtWidgets.QLineEdit(self.groupBox)
+        self.searchEdit.setMinimumSize(QtCore.QSize(150, 0))
+        self.searchEdit.setClearButtonEnabled(True)
+        self.searchEdit.setObjectName("searchEdit")
+        self.horizontalLayout_2.addWidget(self.searchEdit)
         self.verticalLayout.addWidget(self.groupBox)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -130,6 +136,7 @@ class Ui_Form(object):
         font.setPointSize(11)
         self.chargeTable.setFont(font)
         self.chargeTable.setDragEnabled(False)
+        self.chargeTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.chargeTable.setColumnCount(6)
         self.chargeTable.setObjectName("chargeTable")
         self.chargeTable.setRowCount(0)
@@ -189,16 +196,14 @@ class Ui_Form(object):
         sizePolicy.setHeightForWidth(self.memberTable.sizePolicy().hasHeightForWidth())
         self.memberTable.setSizePolicy(sizePolicy)
         self.memberTable.setMinimumSize(QtCore.QSize(200, 0))
-        self.memberTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectItems)
+        self.memberTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.memberTable.setShowGrid(True)
         self.memberTable.setGridStyle(QtCore.Qt.SolidLine)
         self.memberTable.setRowCount(0)
         self.memberTable.setColumnCount(3)
         self.memberTable.setObjectName("memberTable")
-        self.memberTable.horizontalHeader().setMinimumSectionSize(30)
         self.memberTable.horizontalHeader().setStretchLastSection(True)
         self.memberTable.verticalHeader().setVisible(False)
-        self.memberTable.verticalHeader().setMinimumSectionSize(36)
         self.horizontalLayout_5.addWidget(self.memberTable)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
@@ -264,8 +269,8 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.tabWidget)
         self.verticalLayout.setStretch(1, 8)
         self.verticalLayout.setStretch(2, 5)
-        self.label_5.setBuddy(self.startDateEdt)
-        self.label_6.setBuddy(self.endDateEdt)
+        self.label_5.setBuddy(self.mbrCBox)
+        self.label_6.setBuddy(self.typeCBox)
         self.label_3.setBuddy(self.startDateEdt)
         self.label_4.setBuddy(self.endDateEdt)
 
@@ -283,6 +288,7 @@ class Ui_Form(object):
         self.label_4.setText(_translate("Form", "结束时间"))
         self.filtrateBtn.setText(_translate("Form", "筛选"))
         self.revertBtn.setText(_translate("Form", "重置"))
+        self.searchEdit.setPlaceholderText(_translate("Form", "搜索备注里的内容"))
         self.chargeTable.setSortingEnabled(True)
         self.chargeBtn.setText(_translate("Form", "+"))
         self.delChargeBtn.setText(_translate("Form", "-"))
@@ -297,4 +303,3 @@ class Ui_Form(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.membersTab), _translate("Form", "管理"))
         self.pushButton.setText(_translate("Form", "PushButton"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.statisticsTab), _translate("Form", "统计信息"))
-

@@ -38,7 +38,7 @@ class Function():
         return self.members
 
     def delType(self, typeText):
-        delCharges=Charges.select().where(Charges.type==typeText)
+        delCharges = Charges.select().where(Charges.type == typeText)
         for charge in delCharges:
             charge.delete_instance()
         Types.get(type=typeText).delete_instance()
@@ -57,12 +57,12 @@ class Function():
 
     def delMbr(self, id):
         # 同时删除该成员的所有账单
-        delCharges=Charges.select().where(Charges.username==Users.get(id=id).name)
+        delCharges = Charges.select().where(Charges.username == Users.get(id=id).name)
         for charge in delCharges:
             charge.delete_instance()
         Users.get(id=id).delete_instance()
 
-    def modifyCharge(self,id, member, type, amount, date, info):
+    def modifyCharge(self, id, member, type, amount, date, info):
         charge = Charges.get(id=id)
         charge.member = member
         charge.type = type
@@ -72,8 +72,7 @@ class Function():
         charge.save()
 
     def addCharge(self, member, type, amount, date, info):
-        Charges(username=member,type=type,amount=amount,date=date,info=info).save()
-
+        Charges(username=member, type=type, amount=amount, date=date, info=info).save()
 
     def delCharge(self, id):
         Charges.get(id=id).delete_instance()

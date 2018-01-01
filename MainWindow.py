@@ -43,6 +43,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
         self.chargeTable.itemChanged.connect(self.modifyCharge)
         self.chargeBtn.clicked.connect(self.addCharge)
         self.delChargeBtn.clicked.connect(self.delCharge)
+        self.searchEdit.textChanged.connect(self.searchContent)
 
     def updateChargeTable(self):
         self.chargeTable.itemChanged.disconnect(self.modifyCharge)
@@ -77,7 +78,6 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             self.chargeTable.setItem(rowCount, 3, amount)
             self.chargeTable.setItem(rowCount, 4, date)
             self.chargeTable.setItem(rowCount, 5, info)
-            print(charge.amount, charge.info, charge.type_id)
             rowCount += 1
         self.chargeTable.itemChanged.connect(self.modifyCharge)
 
@@ -123,6 +123,10 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
     def delType(self):
         if self.typeList.currentRow() == -1:
             return
+        reply = QMessageBox.question(self, '确认', '删除类型的同时会删除所有该类型的账单，是否继续？', QMessageBox.Yes | QMessageBox.No,
+                                     QMessageBox.Yes)
+        if reply == QMessageBox.No:
+            return
         self.function.delType(self.typeList.currentItem().text())
         self.updateTypeUI()
         self.updateChargeTable()
@@ -142,8 +146,9 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             self.updateMemberUI()
 
     def modifyMbr(self, item):
-        if (item.column() == 1):
-            QMessageBox.about(self, '警告', '不允许更改用户名！')
+        if item.column() == 1:
+            QMessageBox.warning(self, '警告', '不允许更改用户名！', QMessageBox.Ok,
+                                QMessageBox.Ok)
             self.updateMemberUI()
             return
         id = int(self.memberTable.item(item.row(), 0).text())
@@ -227,6 +232,14 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
         if QDate.isValid(*tuple(map(int, string.split('-')))):
             return True
         return False
+
+    def searchContent(self):
+        string = self.searchEdit.text()
+        for row in range(self.chargeTable.rowCount()):
+            if self.chargeTable.item(row, 5).text().find(string) == -1:
+                self.chargeTable.setRowHidden(row, True)
+            else:
+                self.chargeTable.setRowHidden(row, False)
 
 
 if __name__ == '__main__':

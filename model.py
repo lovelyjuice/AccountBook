@@ -1,5 +1,3 @@
-import datetime
-
 from peewee import *
 
 db = SqliteDatabase('database.db', pragmas=(('foreign_keys', 'on'),))
