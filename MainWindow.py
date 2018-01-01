@@ -70,9 +70,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             member.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
             info.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
             date.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-            # type.setTextAlignment(Qt.AlignVCenter|Qt.AlignHCenter)
-            a = map(lambda x: x.setTextAlignment(Qt.AlignVCenter | Qt.AlignHCenter),
-                    (id, type, amount, member, info, date))
+
             self.chargeTable.setItem(rowCount, 0, id)
             self.chargeTable.setItem(rowCount, 1, member)
             self.chargeTable.setItem(rowCount, 2, type)
@@ -81,8 +79,6 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             self.chargeTable.setItem(rowCount, 5, info)
             print(charge.amount, charge.info, charge.type_id)
             rowCount += 1
-        # self.chargeTable.resizeColumnsToContents()
-        self.chargeTable.resizeColumnToContents(5)
         self.chargeTable.itemChanged.connect(self.modifyCharge)
 
     def updateMemberUI(self):
