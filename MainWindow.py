@@ -47,6 +47,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
 
     def updateChargeTable(self):
         self.chargeTable.itemChanged.disconnect(self.modifyCharge)
+        self.chargeTable.setSortingEnabled(False)
         endDate = self.endDateEdt.date().toString('yyyy-MM-dd')
         startDate = self.startDateEdt.date().toString('yyyy-MM-dd')
         member = self.mbrCBox.currentText()
@@ -79,6 +80,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             self.chargeTable.setItem(rowCount, 4, date)
             self.chargeTable.setItem(rowCount, 5, info)
             rowCount += 1
+        self.chargeTable.setSortingEnabled(True)
         self.chargeTable.itemChanged.connect(self.modifyCharge)
 
     def updateMemberUI(self):
@@ -195,7 +197,15 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
         id = int(self.chargeTable.item(item.row(), 0).text())
         member = self.chargeTable.item(item.row(), 1).text()
         type = self.chargeTable.item(item.row(), 2).text()
-        amount = float(self.chargeTable.item(item.row(), 3).text())
+
+        try:
+            amount = float(self.chargeTable.item(item.row(), 3).text())
+        except:
+            item.setText(self.preValue)
+            QMessageBox.warning(self, '提示', '您输入的数据有误，请确认后再修改', QMessageBox.Yes,
+                                QMessageBox.Yes)
+            item.setSelected(True)
+            return
         date = self.chargeTable.item(item.row(), 4).text()
         info = self.chargeTable.item(item.row(), 5).text()
         if self.checkMbr(member) and self.checkType(type) and self.checkDate(date):
@@ -227,7 +237,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
     def checkDate(self, string):
         if string is None:
             return False
-        if re.match(r'^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}', string) is None:
+        if re.match(r'^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$', string) is None:
             return False
         if QDate.isValid(*tuple(map(int, string.split('-')))):
             return True
