@@ -10,9 +10,10 @@ from addChargeDialog import addChargeDialog
 from addMbrWindow import addMbrWindow
 from function import Function
 
+SymbolAll = '*'
+
 
 class MainWindow(QWidget, MainWindow_UI.Ui_Form):
-    SymbolAll = '*'
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -82,13 +83,14 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
             rowCount += 1
         self.chargeTable.setSortingEnabled(True)
         self.chargeTable.itemChanged.connect(self.modifyCharge)
+        self.searchContent()
 
     def updateMemberUI(self):
         # 这一句是为了防止更新UI的时候出发itemChange信号
         self.memberTable.itemChanged.disconnect(self.modifyMbr)
         members = self.function.getMbrList()
         self.mbrCBox.clear()
-        self.mbrCBox.addItem(self.SymbolAll)
+        self.mbrCBox.addItem(SymbolAll)
         for member in members:
             self.mbrCBox.addItem(member.name)
         # todo 调整cbox的大小
@@ -115,7 +117,7 @@ class MainWindow(QWidget, MainWindow_UI.Ui_Form):
         self.typeList.clear()
         types = self.function.getTypeList()
         self.typeCBox.clear()
-        self.typeCBox.addItem(self.SymbolAll)
+        self.typeCBox.addItem(SymbolAll)
         for type in types:
             self.typeCBox.addItem(type.type)
             self.typeList.addItem(type.type)

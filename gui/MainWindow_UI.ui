@@ -17,7 +17,7 @@
             </size>
         </property>
         <property name="windowTitle">
-            <string>Form</string>
+            <string>家庭账本</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,8,5">
             <item>
@@ -250,11 +250,22 @@
                         </item>
                         <item>
                             <widget class="QLineEdit" name="searchEdit">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
                                 <property name="minimumSize">
                                     <size>
                                         <width>150</width>
-                                        <height>0</height>
+                                        <height>25</height>
                                     </size>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <pointsize>10</pointsize>
+                                    </font>
                                 </property>
                                 <property name="placeholderText">
                                     <string>搜索备注里的内容</string>
@@ -352,6 +363,12 @@
                                             <stylestrategy>NoAntialias</stylestrategy>
                                         </font>
                                     </property>
+                                    <property name="toolTip">
+                                        <string>记一笔帐</string>
+                                    </property>
+                                    <property name="statusTip">
+                                        <string>记一笔帐</string>
+                                    </property>
                                     <property name="autoFillBackground">
                                         <bool>false</bool>
                                     </property>
@@ -379,6 +396,12 @@
                                             <bold>false</bold>
                                             <stylestrategy>NoAntialias</stylestrategy>
                                         </font>
+                                    </property>
+                                    <property name="toolTip">
+                                        <string>删除记录</string>
+                                    </property>
+                                    <property name="statusTip">
+                                        <string>删除记录</string>
                                     </property>
                                     <property name="autoFillBackground">
                                         <bool>false</bool>
@@ -527,6 +550,17 @@
                                                         <height>16777215</height>
                                                     </size>
                                                 </property>
+                                                <property name="font">
+                                                    <font>
+                                                        <pointsize>10</pointsize>
+                                                    </font>
+                                                </property>
+                                                <property name="movement">
+                                                    <enum>QListView::Static</enum>
+                                                </property>
+                                                <property name="spacing">
+                                                    <number>2</number>
+                                                </property>
                                                 <property name="sortingEnabled">
                                                     <bool>true</bool>
                                                 </property>
@@ -618,6 +652,26 @@
             </item>
         </layout>
     </widget>
+    <tabstops>
+        <tabstop>searchEdit</tabstop>
+        <tabstop>tabWidget</tabstop>
+        <tabstop>mbrCBox</tabstop>
+        <tabstop>typeCBox</tabstop>
+        <tabstop>startDateEdt</tabstop>
+        <tabstop>endDateEdt</tabstop>
+        <tabstop>filtrateBtn</tabstop>
+        <tabstop>revertBtn</tabstop>
+        <tabstop>chargeTable</tabstop>
+        <tabstop>chargeBtn</tabstop>
+        <tabstop>delChargeBtn</tabstop>
+        <tabstop>memberTable</tabstop>
+        <tabstop>addMbrBtn</tabstop>
+        <tabstop>delMbrBtn</tabstop>
+        <tabstop>typeList</tabstop>
+        <tabstop>addTypeBtn</tabstop>
+        <tabstop>delTypeBtn</tabstop>
+        <tabstop>pushButton</tabstop>
+    </tabstops>
     <resources/>
     <connections/>
 </ui>

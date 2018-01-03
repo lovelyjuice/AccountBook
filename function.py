@@ -1,5 +1,7 @@
 from model import *
 
+SymbolAll = '*'
+
 
 class Function():
     def __init__(self) -> None:
@@ -14,15 +16,15 @@ class Function():
         a = {'username_id': args[0], 'type_id': args[1]}
         b = []
         for key in a:
-            if a[key] == '*':
+            if a[key] == SymbolAll:
                 b.append(key)
         for key in b:
             del a[key]
         endString = ''
         for key in a:
             endString += (' and ' + key + ' =? ')
-        b = tuple(filter(lambda s: s != '*', args))
-        sql = 'SELECT * FROM charges WHERE date>=? AND date<=?{0}'.format(endString)
+        b = tuple(filter(lambda s: s != SymbolAll, args))
+        sql = 'SELECT * FROM charges WHERE date>=? AND date<=?{0} ORDER BY date DESC'.format(endString)
         param = (startDate, endDate) + b
         self.charges = Users.raw(sql, *param)
         return self.charges
